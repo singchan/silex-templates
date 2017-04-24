@@ -136,17 +136,17 @@
                    return this;
                });
                // add the css class on the current menu item
-               if(fromTop < navSectionHeight) {
+        /*       if(fromTop < navSectionHeight) {
                    $('.nav-section').removeClass('invisible');
                }
-               $(".active-menu").removeClass("active-menu");
+        */       $(".active-menu").removeClass("active-menu");
                if(cur.length > 0) {
                    cur = cur[cur.length-1];
                    $(cur.link).addClass("active-menu");
-                   if(fromTop > navSectionHeight) {
+        /*           if(fromTop > navSectionHeight) {
                        $('.nav-section').addClass('invisible');
                    }
-               }
+        */       }
             });
         });
     </script>
