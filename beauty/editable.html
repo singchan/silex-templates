@@ -89,7 +89,7 @@
                             if(window.location.hash.indexOf("#" + name) > 0) {
                                 var offsetTop = item.offset().top;
                                 $('html, body').stop().animate({
-                                    scrollTop: offsetTop
+                                    scrollTop: offsetTop - $('.nav-section').height()
                                 }, 300);
                             }
                             // now find the element itself, which has the name as a css class
@@ -113,7 +113,7 @@
                     setTimeout(function() {
                       var offsetTop = $(item).offset().top;
                       $('html, body').stop().animate({
-                          scrollTop: offsetTop
+                          scrollTop: offsetTop - $('.nav-section').height()
                       }, 300);
                       e.preventDefault();
                     }, 100);
