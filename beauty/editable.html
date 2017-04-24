@@ -74,7 +74,7 @@
                     if(attr && attr.indexOf("#") === 0) {
                         var name = attr.substring(attr.lastIndexOf("#") + 1);
                         console.log('xxx', attr, name);
-                        // exclude page names
+                        // exclude page names (#!page-)
                         if(name.indexOf("!page") !== 0) {
                             var item = $("." + name);
                             // check if there is a hash in the URL to scroll to the anchor at start
