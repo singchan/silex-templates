@@ -78,7 +78,6 @@
                             var item = $("." + name);
                             // check if there is a hash in the URL to scroll to the anchor at start
                             if(window.location.hash.indexOf("#" + name) > 0) {
-                                console.log('xxx scroll', attr, name, window.location.hash);
                                 var offsetTop = item.offset().top;
                                 $('html, body').stop().animate({
                                     scrollTop: offsetTop
