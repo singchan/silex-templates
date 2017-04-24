@@ -63,6 +63,7 @@
          * when the user slides and the element is visible, the link gets a css class "active-menu"
          */
         $(function() {
+            var navSectionHeight = $('.nav-section').height();
             // Cache selectors
             var lastId,
                 // All list items
@@ -90,7 +91,7 @@
                             if(window.location.hash.indexOf("#" + name) > 0) {
                                 var offsetTop = item.offset().top;
                                 $('html, body').stop().animate({
-                                    scrollTop: offsetTop - $('.nav-section').height()
+                                    scrollTop: offsetTop - navSectionHeight
                                 }, 300);
                             }
                             // now find the element itself, which has the name as a css class
@@ -114,7 +115,7 @@
                     setTimeout(function() {
                       var offsetTop = $(item).offset().top;
                       $('html, body').stop().animate({
-                          scrollTop: offsetTop - $('.nav-section').height()
+                          scrollTop: offsetTop - navSectionHeight
                       }, 300);
                       e.preventDefault();
                     }, 100);
@@ -127,18 +128,18 @@
                var fromTop = $(this).scrollTop();
                // Get id of current scroll item
                var cur = scrollItems.map(function(){
-                 if ($(this.item).offset().top <= fromTop)
+                 if ($(this.item).offset().top <= fromTop + navSectionHeight)
                    return this;
                });
                // add the css class on the current menu item
-               if(fromTop < $('.nav-section').height()) {
+               if(fromTop < navSectionHeight) {
                    $('.nav-section').removeClass('invisible');
                }
                $(".active-menu").removeClass("active-menu");
                if(cur.length > 0) {
                    cur = cur[cur.length-1];
                    $(cur.link).addClass("active-menu");
-                   if(fromTop > $('.nav-section').height()) {
+                   if(fromTop > navSectionHeight) {
                        $('.nav-section').addClass('invisible');
                    }
                }
