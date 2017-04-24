@@ -25,17 +25,24 @@
         }
         
         .active-menu {
-            font-weight: bold !important;
+            font-weight: bold;
         }
         
-        .nav-section.invisible {
+        body.enable-mobile {
+            padding: 0;
+        }
+        /* ******************* *
+ * always visible menu */
+        
+        .silex-runtime .editable-style.nav-section {
             position: fixed;
             z-index: 9999;
         }
         
-        .nav-section.invisible+.editable-style {
+        .silex-runtime .nav-section+.editable-style {
             margin-top: 100px;
         }
+        /* ******************* */
     
         .body-initial {
             background-color: rgba(253, 246, 235, 1);
