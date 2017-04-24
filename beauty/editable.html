@@ -74,19 +74,22 @@
                     if(attr && attr.indexOf("#") === 0) {
                         var name = attr.substring(attr.lastIndexOf("#") + 1);
                         console.log('xxx', attr, name);
-                        var item = $("." + name);
-                        // check if there is a hash in the URL to scroll to the anchor at start
-                        if(window.location.hash.indexOf(name) === 1) {
-                            var offsetTop = item.offset().top;
-                            $('html, body').stop().animate({
-                                scrollTop: offsetTop
-                            }, 300);
-                        }
-                        // now find the element itself, which has the name as a css class
-                        if (item.length) { return {
-                                "link": this,
-                                "item": item.get(0)
-                            };
+                        // exclude page names
+                        if(name.indexOf("!") !== 0) {
+                            var item = $("." + name);
+                            // check if there is a hash in the URL to scroll to the anchor at start
+                            if(window.location.hash.indexOf(name) === 1) {
+                                var offsetTop = item.offset().top;
+                                $('html, body').stop().animate({
+                                    scrollTop: offsetTop
+                                }, 300);
+                            }
+                            // now find the element itself, which has the name as a css class
+                            if (item.length) { return {
+                                    "link": this,
+                                    "item": item.get(0)
+                                };
+                            }
                         }
                     }
                 });
