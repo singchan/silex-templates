@@ -1,6 +1,15 @@
 
+        @font-face {
+            font-family: 'aaarghnormal';
+            src: url('../assets/Aaargh-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
         .normal {
-            line-height: 1.5;
+            line-height: 1.8;
+            font-size: 14px;
+            font-family: aaarghnormal, sans-serif;
         }
         /* ************** */
         /* hamburger menu */
@@ -41,11 +50,11 @@
             top: auto;
             left: auto;
             margin: auto !important;
+            min-width: 1250px;
         }
         
         div.almost-full-width {
-            width: 80%;
-            max-width: 2000px;
+            width: 90%;
             right: auto;
             left: auto;
             margin: auto;
@@ -135,7 +144,7 @@
             background-color: rgb(255, 255, 255);
             min-height: 60px;
             top: 23px;
-            left: 1132px;
+            left: 1131px;
         }
         
         .silex-id-1474394621033-3 {
@@ -146,11 +155,11 @@
         }
         
         .silex-id-1474394621032-2 {
-            min-height: 480px;
+            min-height: 372px;
             background-color: transparent;
             width: 1200px;
             top: 15px;
-            left: 100px;
+            left: 101px;
         }
         
         .silex-id-1493741895894-1 {
@@ -212,8 +221,8 @@
         
         .silex-id-1493744659011-22 {
             width: 377px;
-            min-height: 76px;
-            top: 19px;
+            min-height: 58px;
+            top: 37px;
             left: 398px;
         }
         
