@@ -19,11 +19,13 @@
             line-height: 1.5;
         }
         
-        .silex-runtime .show-when-active {
+        .silex-runtime {}
+        
+        .show-when-active>.silex-container-content {
             display: none;
         }
         
-        .is-active .show-when-active {
+        .is-active .show-when-active>.silex-container-content {
             display: initial;
         }
         
