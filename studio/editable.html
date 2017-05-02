@@ -22,9 +22,14 @@
         /* hamburger menu */
         /* ************** */
         
+        .silex-runtime .show-when-active>.silex-container-content>.editable-style {
+            position: fixed;
+        }
+        
         .silex-runtime.is-not-active .show-when-active>.silex-container-content {
             top: -999px;
             min-height: 0;
+            position: absolute;
         }
         
         .show-when-active {
@@ -33,10 +38,6 @@
         
         .silex-runtime .show-when-active>.silex-container-content {
             transition: 1s all;
-        }
-        
-        .silex-runtime .show-when-active>.silex-container-content>.editable-style {
-            position: fixed;
         }
         
         div.section-no-content-container {
