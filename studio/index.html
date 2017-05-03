@@ -62,6 +62,10 @@
 
     
 
+
+
+
+
     <style id="current-page-style">
         .page-home {
             display: inherit;
@@ -151,42 +155,149 @@
 
         <div data-silex-type="html" class="editable-style silex-id-1493743418647-14 html-element silex-component almost-full-width" data-silex-id="silex-id-1493743418647-14">
             <div class="silex-element-content">
-                <!-- preview -->
-                <!-- just the 1st image 100% size -->
-                <div class="prodotype-preview prodotype-force-size">
+                <div id="parent_1493837443985_643">
+                    <!-- preview -->
+                    <div class="prodotype-preview">
 
-                    <div style=" background-image:url('assets/photo-1416339276121-ba1dfa199912.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 50%;  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <p>~ Preview ~</p>
+                        <div class="preview-text prodotype-force-size">
+                            <p>~ Preview ~</p>
+                        </div>
+                        <figure class="slide-0">
+                            <div class="slide-image prodotype-force-size">
+
+                                <figcaption>BOX POPULI<br> Identitée | webdesign | UI
+                                </figcaption>
+
+                            </div>
+                        </figure>
+
                     </div>
+                    <div id="id_1493837443985_643">
+                        <!-- runtime -->
+                        <!-- the whole slideshow -->
+                        <ul class="prodotype-runtime">
 
-                </div>
-                <!-- runtime -->
-                <!-- the whole slideshow -->
-                <div class="prodotype-runtime" id="parent_1493747073313_120">
-                    <div id="id_1493747073313_120">
-                        <ul>
+                            <li>
+                                <figure class="slide-0">
 
-                            <li style=" background-image:url('assets/photo-1416339276121-ba1dfa199912.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 50%;">
-                                Books for makers
+                                    <a href="https://www.behance.net/gallery/51178877/BOX-POPULI">
+
+                                        <div class="slide-image">
+
+                                            <figcaption>BOX POPULI<br> Identitée | webdesign | UI
+                                            </figcaption>
+
+                                        </div>
+
+                                    </a>
+
+                                </figure>
                             </li>
 
-                            <li style=" background-image:url('assets/photo-1447069387593-a5de0862481e.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 50%;">
-                                Books for makers
+                            <li>
+                                <figure class="slide-1">
+
+                                    <a href="https://www.behance.net/gallery/37097801/HARMOZIK-motion">
+
+                                        <div class="slide-image">
+
+                                            <figcaption>Harmozik<br> motion
+                                            </figcaption>
+
+                                        </div>
+
+                                    </a>
+
+                                </figure>
                             </li>
 
-                            <li style=" background-image:url('assets/photo-1457369804613-52c61a468e7d.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 50%;">
-                                Books for makers
-                            </li>
+                            <li>
+                                <figure class="slide-2">
 
-                            <li style=" background-image:url('assets/photo-1465433045946-ba6506ce5a59.jpg'); background-repeat: no-repeat; background-size: cover; background-position: 50%;">
-                                Books for makers
+                                    <a href="https://www.behance.net/gallery/17580087/EPSU-CJ-website">
+
+                                        <div class="slide-image">
+
+                                            <figcaption>
+                                                EPSU-CJ<br> website
+                                            </figcaption>
+
+                                        </div>
+
+                                    </a>
+
+                                </figure>
                             </li>
 
                         </ul>
                     </div>
                 </div>
                 <style type="text/css">
-                    #parent_1493747073313_120 .unslider-nav {
+                    /* *********************** */
+                    /* "Preview" label always on top of the slideshow in silex */
+                    
+                    #parent_1493837443985_643 .prodotype-preview {
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                    #parent_1493837443985_643 .prodotype-preview .preview-text {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    
+                    #parent_1493837443985_643 .prodotype-preview .preview-text p {
+                        z-index: 1;
+                        background-color: black;
+                        color: white;
+                    }
+                    /* *********************** */
+                    /* styles for each slide */
+                    
+                    #parent_1493837443985_643 .slide-0 .slide-image {
+                        background-image: url('assets/project1.png');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 50%;
+                    }
+                    
+                    #parent_1493837443985_643 .slide-1 .slide-image {
+                        background-image: url('assets/project2.jpg');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 50%;
+                    }
+                    
+                    #parent_1493837443985_643 .slide-2 .slide-image {
+                        background-image: url('assets/project3.png');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 50%;
+                    }
+                    /* *********************** */
+                    /* styles for all the slides */
+                    
+                    #parent_1493837443985_643 .slide-image {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-end;
+                        justify-content: center;
+                    }
+                    
+                    #parent_1493837443985_643 figcaption {
+                        padding: 50px;
+                        color: white;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        width: 100%;
+                        text-align: center;
+                    }
+                    /* *********************** */
+                    /* UI style */
+                    
+                    #parent_1493837443985_643 .unslider-nav {
                         position: absolute;
                         bottom: 10px;
                         left: 0;
@@ -195,17 +306,17 @@
                         margin: 0;
                     }
                     
-                    #parent_1493747073313_120 .unslider-nav ol {
+                    #parent_1493837443985_643 .unslider-nav ol {
                         text-align: center;
                     }
                     
-                    #parent_1493747073313_120 .unslider-nav ol li.unslider-active {
+                    #parent_1493837443985_643 .unslider-nav ol li.unslider-active {
                         background: #fff;
                         cursor: default;
                         opacity: 1;
                     }
                     
-                    #parent_1493747073313_120 .unslider-nav ol li {
+                    #parent_1493837443985_643 .unslider-nav ol li {
                         display: inline-block;
                         float: none;
                         width: 6px;
@@ -221,7 +332,7 @@
                         opacity: .4;
                     }
                     
-                    #parent_1493747073313_120 .unslider-arrow {
+                    #parent_1493837443985_643 .unslider-arrow {
                         display: block;
                         width: 32px;
                         height: 32px;
@@ -239,12 +350,13 @@
                         transition: opacity .2s;
                     }
                     
-                    #parent_1493747073313_120 .unslider-arrow.prev {
+                    #parent_1493837443985_643 .unslider-arrow.prev {
                         left: 16px;
                         right: auto;
                         -ms-transform: rotate(-180deg);
                         transform: rotate(-180deg);
                     }
+                    /* *********************** */
                 </style>
                 <script type="text/javascript">
                     (function() {
@@ -252,22 +364,30 @@
                           // do not start in the editor (it would mess with the markup)
                           if(!$('body').hasClass('silex-runtime')) return;
                     
-                          var slider = $('#id_1493747073313_120').unslider({
-                            "autoplay": false,
-                            "speed": 750,
-                            "delay": 3000,
-                            "index": 0,
-                            "nav": false,
-                            "arrows": true
+                          var slider = $('#id_1493837443985_643').unslider({
+                            'autoplay': true,
+                            'speed': 750,
+                            'delay': 3000,
+                            'index': 0,
+                            'nav': false,
+                            'animation': 'fade',
+                            'arrows': true
                           });
                           //  Listen to slide changes
                           
                           // apply element height to the images
-                          var silexElement = $('#id_1493747073313_120').closest('.editable-style');
+                          var silexElement = $('#id_1493837443985_643').closest('.editable-style');
                           var elementMinHeight = silexElement.css('height');
-                          $('#id_1493747073313_120 li').css({
+                          var elementWidth = silexElement.css('width');
+                          $('#id_1493837443985_643 li .slide-image').css({
                             'height': elementMinHeight
                           });
+                          
+                          // apply element height to the container (useful for fade only)
+                          $('#id_1493837443985_643 ul').css({
+                            'height': elementMinHeight
+                          });
+                          
                       }
                         initUnslider();
                       })();
@@ -439,6 +559,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 
 
 
