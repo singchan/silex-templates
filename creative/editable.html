@@ -24,13 +24,12 @@
             min-height: 0;
         }
         
-        .show-when-active .silex-container-content {
+        .is-not-active .show-when-active .silex-container-content {
             transition: .2s all ease;
-        }
-        
-        .is-active .show-when-active .silex-container-content {
             min-height: 0;
         }
+        
+        .is-active .show-when-active .silex-container-content {}
         
         body.silex-runtime>.editable-style {
             transition: .2s all ease;
