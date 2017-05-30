@@ -34,14 +34,10 @@
         /* menu hide */
         
         body.silex-runtime .show-when-active {
-            bottom: 120%;
+            bottom: 100%;
             top: inherit;
             position: absolute !important;
             transition: .2s all ease-out;
-        }
-        
-        body.silex-runtime.is-active .show-when-active {
-            bottom: 100%;
         }
         /* menu show */
         
@@ -51,8 +47,7 @@
             height: 100%;
         }
         
-        body.silex-runtime,
-        body.silex-runtime .show-when-not-active {
+        body.silex-runtime {
             transition: .2s all ease-out;
         }
         
