@@ -23,31 +23,28 @@
         }
         /* ************** */
         /* hamburger menu */
-        /*body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
-    top: -999px;
-    min-height: 0;
-}
-
-body.silex-runtime.is-not-active .show-when-active .silex-container-content {
-    min-height: 0;
-}
-
-body.silex-runtime .show-when-active .silex-container-content,
-body.silex-runtime>.editable-style {
-    transition: .5s all ease-out;
-}
-
-*/
         
         button:focus {
             outline: none;
         }
-        /* show site border */
-        
-        body.is-active.silex-runtime>.editable-style {
-            /*    min-width: 0;
+        /*
+body.is-active.silex-runtime>.editable-style {
+    min-width: 0;
     margin: 0 10%;
+}
 */
+        
+        body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
+            top: -999px;
+            min-height: 0;
+        }
+        
+        body.silex-runtime.is-not-active .show-when-active .silex-container-content {
+            min-height: 0;
+        }
+        
+        body.silex-runtime .show-when-active .silex-container-content {
+            transition: .5s all ease-out;
         }
         
         body.silex-runtime {
