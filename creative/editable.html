@@ -35,8 +35,13 @@ body.is-active.silex-runtime>.editable-style {
 */
         /* menu hide */
         
+        body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
+            min-height: 0;
+        }
+        
         body.silex-runtime .show-when-active>.silex-container-content {
-            top: -999px;
+            bottom: 0px;
+            top: inherit;
         }
         /* menu show */
         
