@@ -37,7 +37,6 @@
             bottom: 100%;
             top: inherit;
             position: absolute !important;
-            /*    transition: .2s all ease-out;*/
         }
         /* menu show */
         
@@ -75,8 +74,8 @@
                 $('body').toggleClass('is-not-active'); 
                 $('body').toggleClass('is-active'); 
             }
-            $('.close-btn').click(toggle);
-            $('.open-btn').click(toggle);
+            $('.close-btn, .open-btn').click(toggle);
+
         });
     </script>
     <style class="silex-inline-styles" type="text/css">
