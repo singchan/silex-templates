@@ -31,12 +31,13 @@
 body.silex-runtime.is-not-active .show-when-active .silex-container-content {
     min-height: 0;
 }
+
+body.silex-runtime .show-when-active .silex-container-content,
+body.silex-runtime>.editable-style {
+    transition: .5s all ease-out;
+}
+
 */
-        
-        body.silex-runtime .show-when-active .silex-container-content,
-        body.silex-runtime>.editable-style {
-            transition: .5s all ease-out;
-        }
         
         button:focus {
             outline: none;
@@ -47,6 +48,13 @@ body.silex-runtime.is-not-active .show-when-active .silex-container-content {
             /*    min-width: 0;
     margin: 0 10%;
 */
+        }
+        
+        body.silex-runtime {
+            transform: scale(0.9, 0.9);
+        }
+        
+        body.is-active.silex-runtime {
             transform: scale(0.9, 0.9);
         }
         /*
