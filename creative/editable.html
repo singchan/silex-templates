@@ -72,15 +72,23 @@
             opacity: 0;
         }
         
-        .thumb .text-element {}
+        .thumb:hover .text-element {}
         
-        .thumb:hover .text-element {
+        .thumb .text-element {
             opacity: 1;
             width: 100%;
             left: 0;
             height: 100%;
             top: 0;
+            display: flex;
+            flex-direction: column;
         }
+        
+        .thumb .text-element .silex-element-content {
+            flex: 0 0 auto;
+        }
+        
+        .thumb .text-element * {}
     </style>
     <script type="text/javascript" class="silex-script">
         $(function() {
