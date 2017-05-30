@@ -38,16 +38,17 @@
         }
         /* hamburger menu */
         
-        .close-btn,
-        .open-btn {
-            cursor: pointer;
-        }
-        /* menu hide */
-        
-        body.silex-runtime .show-when-active {
-            bottom: 100%;
-            top: inherit;
-            position: absolute !important;
+        @media (min-width: 480px) {
+            .close-btn,
+            .open-btn {
+                cursor: pointer;
+            }
+            /* menu hide */
+            body.silex-runtime .show-when-active {
+                bottom: 100%;
+                top: inherit;
+                position: absolute !important;
+            }
         }
         /* menu show */
         
@@ -71,10 +72,6 @@
         
         body.is-active .show-when-not-active {
             height: 0;
-        }
-        
-        body.is-active.silex-runtime {
-            transform: translateY(100px);
         }
         
         @media (min-width: 480px) {
