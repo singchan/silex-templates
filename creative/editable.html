@@ -35,6 +35,9 @@ body.is-active.silex-runtime>.editable-style {
 body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
     min-height: 0;
 }
+body.silex-runtime .show-when-active .silex-container-content {
+    transition: .1s 0 all ease-out;
+}
 */
         /* menu hide */
         
@@ -45,16 +48,13 @@ body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
         }
         /* menu show */
         
-        body.silex-runtime .show-when-active .silex-container-content {
-            transition: .1s 0 all ease-out;
-        }
-        
         body.silex-runtime {
             transition: .2s all ease-out;
         }
         
         body.is-active.silex-runtime {
-            transform: scale(0.9, 0.9);
+            transform: scale(0.9, 0.9) translateY(100px);
+            ;
         }
         /*
 body.is-active.silex-runtime {
