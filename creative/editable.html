@@ -23,15 +23,15 @@
         }
         /* ************** */
         /* hamburger menu */
-        
-        body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
-            top: -999px;
-            min-height: 0;
-        }
-        
-        body.silex-runtime.is-not-active .show-when-active .silex-container-content {
-            min-height: 0;
-        }
+        /*body.silex-runtime.is-not-active .show-when-active>.silex-container-content {
+    top: -999px;
+    min-height: 0;
+}
+
+body.silex-runtime.is-not-active .show-when-active .silex-container-content {
+    min-height: 0;
+}
+*/
         
         body.silex-runtime .show-when-active .silex-container-content,
         body.silex-runtime>.editable-style {
@@ -44,10 +44,16 @@
         /* show site border */
         
         body.is-active.silex-runtime>.editable-style {
-            min-width: 0;
-            margin: 0 10%;
-            box-shadow: 0 -10px 10px 4px rgba(0, 0, 0, 0.11);
+            /*    min-width: 0;
+    margin: 0 10%;
+*/
+            transform: scale(0.9, 0.9);
         }
+        /*
+body.is-active.silex-runtime {
+    box-shadow: 0 -10px 10px 4px rgba(0, 0, 0, 0.11);
+}
+*/
         /* ************** */
     </style>
     <script type="text/javascript" class="silex-script"></script>
