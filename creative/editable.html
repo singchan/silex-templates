@@ -15,6 +15,34 @@
     <link rel="stylesheet" href="//preprod.silex.me/static/2.7/front-end.css" data-silex-static="">
 
     <style type="text/css" class="silex-style">
+        /* ************** */
+        /* hamburger menu */
+        /* ************** */
+        
+        .silex-runtime.is-not-active .show-when-active>.silex-container-content {
+            top: -999px;
+            min-height: 0;
+        }
+        
+        .show-when-active {
+            min-height: 50px;
+        }
+        
+        .silex-runtime .show-when-active>.silex-container-content {
+            transition: 1s all;
+        }
+        
+        div.section-no-content-container {
+            position: relative;
+            width: 100%;
+            top: auto;
+            left: auto;
+            margin: auto;
+        }
+        
+        button:focus {
+            outline: none;
+        }
         /* **************** */
         /* show site border */
         /* **************** */
