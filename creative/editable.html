@@ -25,11 +25,12 @@
         }
         
         .is-not-active .show-when-active .silex-container-content {
-            transition: .2s all ease;
             min-height: 0;
         }
         
-        .is-active .show-when-active .silex-container-content {}
+        .show-when-active .silex-container-content {
+            transition: .2s all ease;
+        }
         
         body.silex-runtime>.editable-style {
             transition: .2s all ease;
