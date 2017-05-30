@@ -22,16 +22,26 @@
         }
         /* hamburger menu */
         
-        .close-btn,
-        .open-btn {
-            cursor: pointer;
+        @media (max-width: 480px) {
+            body.silex-runtime.is-not-active .show-when-active {
+                display: none;
+            }
+            body.silex-runtime.is-active .show-when-not-active {
+                display: none;
+            }
         }
-        /* menu hide */
         
-        body.silex-runtime .show-when-active {
-            bottom: 100%;
-            top: inherit;
-            position: absolute !important;
+        @media (min-width: 480px) {
+            .close-btn,
+            .open-btn {
+                cursor: pointer;
+            }
+            /* menu hide */
+            body.silex-runtime .show-when-active {
+                bottom: 100%;
+                top: inherit;
+                position: absolute !important;
+            }
         }
         /* menu show */
         
@@ -45,10 +55,6 @@
             transition: .2s all ease-out;
         }
         
-        body.is-active.silex-runtime {
-            transform: scale(0.9, 0.9) translateY(100px);
-        }
-        
         body.is-active.silex-runtime>.section-element {
             margin-bottom: -1px;
         }
@@ -60,21 +66,25 @@
         body.is-active .show-when-not-active {
             height: 0;
         }
+        
+        @media (min-width: 480px) {
+            body.is-active.silex-runtime {
+                transform: scale(0.9, 0.9) translateY(100px);
+            }
+        }
         /* ************** */
         /* thumb */
         
-        .silex-runtime .thumb .text-element {
-            opacity: 0;
-            transition: opacity .5s;
+        @media (min-width: 480px) {
+            .silex-runtime .thumb .text-element {
+                opacity: 0;
+                transition: opacity .5s;
+            }
         }
         
         .silex-runtime .thumb:hover .text-element {
             opacity: 1;
         }
-        /*@media (max-width: 480px) {
-    
-}
-*/
         
         .silex-runtime .thumb .text-element {
             width: 100%;
