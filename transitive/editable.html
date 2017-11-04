@@ -42,25 +42,19 @@
         }
     </style>
     <script type="text/javascript" class="silex-script">
-        //jQuery is required to run this code
         $( document ).ready(function() {
-        
-            scaleVideoContainer();
-        
+            scaleHero();
             $(window).on('resize', function() {
-                scaleVideoContainer();
+                scaleHero();
             });
-        
         });
         
-        function scaleVideoContainer() {
-        
+        function scaleHero() {
             var height = $(window).height() + 5;
             var unitHeight = parseInt(height) + 'px';
             var unitHeight_2 = parseInt(height/2) + 'px';
             $('.homepage-hero').css('height',unitHeight);
             $('.middle-hero').css('top',unitHeight_2);
-        
         }
     </script>
     <style class="silex-inline-styles" type="text/css">
