@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- generator meta tag -->
+    <!-- leave this for stats and Silex version check -->
+    <meta name="generator" content="Silex v2.2.7">
+    <!-- End of generator meta tag -->
+    <script type="text/javascript" src="//localhost:6805/static/2.7/jquery.js" data-silex-static=""></script>
+    <script type="text/javascript" src="//localhost:6805/static/2.7/jquery-ui.js" data-silex-static=""></script>
+    <script type="text/javascript" src="//localhost:6805/static/2.7/pageable.js" data-silex-static=""></script>
+    <script type="text/javascript" src="//localhost:6805/static/2.7/front-end.js" data-silex-static=""></script>
+    <link rel="stylesheet" href="//localhost:6805/static/2.7/normalize.css" data-silex-static="">
+    <link rel="stylesheet" href="//localhost:6805/static/2.7/front-end.css" data-silex-static="">
+
+    <style type="text/css" class="silex-style">
+        .homepage-hero-module {
+            border-right: none;
+            border-left: none;
+            position: relative;
+        }
+        
+        .no-video .video-container video,
+        .touch .video-container video {
+            display: none;
+        }
+        
+        .no-video .video-container .poster,
+        .touch .video-container .poster {
+            display: block !important;
+        }
+        
+        .video-container {
+            position: relative;
+            bottom: 0%;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-container .poster img {
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+        }
+        
+        .video-container .filter {
+            z-index: 100;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.4);
+            width: 100%;
+        }
+        
+        .video-container video {
+            position: absolute;
+            z-index: 0;
+            bottom: 0;
+        }
+        
+        .video-container video.fillWidth {
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript" class="silex-script">
+        //jQuery is required to run this code
+        $( document ).ready(function() {
+        
+            scaleVideoContainer();
+        
+            initBannerVideoSize('.video-container .poster img');
+            initBannerVideoSize('.video-container .filter');
+            initBannerVideoSize('.video-container video');
+        
+            $(window).on('resize', function() {
+                scaleVideoContainer();
+                scaleBannerVideoSize('.video-container .poster img');
+                scaleBannerVideoSize('.video-container .filter');
+                scaleBannerVideoSize('.video-container video');
+            });
+        
+        });
+        
+        function scaleVideoContainer() {
+        
+            var height = $(window).height() + 5;
+            var unitHeight = parseInt(height) + 'px';
+            $('.homepage-hero-module').css('height',unitHeight);
+        
+        }
+        
+        function initBannerVideoSize(element){
+        
+            $(element).each(function(){
+                $(this).data('height', $(this).height());
+                $(this).data('width', $(this).width());
+            });
+        
+            scaleBannerVideoSize(element);
+        
+        }
+        
+        function scaleBannerVideoSize(element){
+        
+            var windowWidth = $(window).width(),
+            windowHeight = $(window).height() + 5,
+            videoWidth,
+            videoHeight;
+        
+            // console.log(windowHeight);
+        
+            $(element).each(function(){
+                var videoAspectRatio = $(this).data('height')/$(this).data('width');
+        
+                $(this).width(windowWidth);
+        
+                if(windowWidth < 1000){
+                    videoHeight = windowHeight;
+                    videoWidth = videoHeight / videoAspectRatio;
+                    $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+        
+                    $(this).width(videoWidth).height(videoHeight);
+                }
+        
+                $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+        
+            });
+        }
+    </script>
+    <style class="silex-inline-styles" type="text/css">
+        .body-initial {
+            background-color: rgba(255, 255, 255, 1);
+        }
+        
+        .silex-id-1478366444112-1 {
+            top: 5px;
+            left: 5px;
+            background-color: transparent;
+        }
+        
+        .silex-id-1478366444112-0 {
+            min-height: 960px;
+            background-color: transparent;
+            width: 1200px;
+        }
+        
+        .silex-id-1509831230087-0 {
+            width: 740px;
+            background-color: rgb(255, 255, 255);
+            min-height: 447px;
+            top: 288px;
+            left: 198px;
+        }
+        
+        .silex-id-1474394621033-3 {
+            top: 5px;
+            left: 0px;
+        }
+        
+        .silex-id-1474394621032-2 {
+            min-height: 600px;
+            background-color: transparent;
+            width: 1200px;
+        }
+        
+        .silex-id-1478366450713-3 {
+            top: 100px;
+            left: NaNpx;
+            background-color: transparent;
+        }
+        
+        .silex-id-1478366450713-2 {
+            min-height: 100px;
+            background-color: transparent;
+            width: 1200px;
+        }
+        
+        .silex-id-1442914737143-3 {
+            min-height: 53px;
+            width: 349px;
+            top: 29px;
+            left: 430px;
+        }
+    </style>
+    <title></title>
+    <script type="text/javascript" class="silex-json-styles">
+        [{"desktop":{"body-initial":{"background-color":"rgba(255,255,255,1)"},"silex-id-1474394621033-3":{"top":"5px","left":"0px"},"silex-id-1474394621032-2":{"min-height":"600px","background-color":"transparent","width":"1200px"},"silex-id-1474394605264-1":{"min-height":"100px","width":"100px","top":"100px","left":"100px"},"silex-id-1474394605263-0":{"min-height":"100px","background-color":"transparent"},"silex-id-1442914737143-3":{"min-height":"53px","width":"349px","top":"29px","left":"430px"},"silex-id-1478366444112-0":{"min-height":"960px","background-color":"transparent","width":"1200px"},"silex-id-1478366444112-1":{"top":"5px","left":"5px","background-color":"transparent"},"silex-id-1478366450713-2":{"min-height":"100px","background-color":"transparent","width":"1200px"},"silex-id-1478366450713-3":{"top":"100px","left":"NaNpx","background-color":"transparent"},"silex-id-1509831230087-0":{"width":"100px","background-color":"rgb(255, 255, 255)","min-height":"100px","top":"288px","left":"198px"}},"mobile":{},"componentData":{}}]
+    </script>
+
+
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.2" data-silex-viewport="">
+
+
+    <meta name="website-width" content="1200">
+    <style type="text/css" class="silex-style-settings">
+        .website-width {
+            width: 1200px;
+        }
+    </style>
+
+
+
+
+
+
+
+    <!-- Silex HEAD tag do not remove -->
+    <!-- End of Silex HEAD tag do not remove -->
+</head>
+
+<body data-silex-id="body-initial" class="body-initial enable-mobile silex-runtime" data-silex-type="container">
+    <div class="silex-pages">
+        <div data-silex-type="image" class="editable-style silex-id-hamburger-menu image-element menu-button prevent-draggable prevent-resizable" data-silex-id="silex-id-hamburger-menu">
+            <img alt="open mobile menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAB5UlEQVR42u2ZPWvCUBSGM+UfFO3e3dLu/QN+oKj4EUXRQREEJYgoiCAu6qCogyDo7iJ21UUaKqEgCC4iiEMGB3UVgsnpTWj/wfVK2nvhGbKEPJyT996TMMzPGg6H5mKx+GgkyuWyeTQasb8OTDwef4tEIp8+n+/LYIjJZJJHQiwzm81M6OLDarWqNpsNjEYgEJCy2ewT0+/3TagighElNFAnQT6ft1ARKkJFqMgfFvF4PFpuEwFtdrcRqVarIIoirFYrIiyXSxiPx+B2u/GJBINBuF6vQHopigK1Wg2fCMdxcLlciIuoqgqNRgOfiN1uB3Qwg91uB8fjkQiHwwEmkwne1qLxS0VuKKJle71eh06nQ4Rmswk8z+MVcTqdsNlsQJZlotF7Pp8hk8ngE4lGo/qN7xG/vV4Pb0Xm8zlxkdPpBGgMx/+yJxIJKBQKRMjlcuBwOGhq/Q+RcDgMsViMCFrAuFwu/CKDwQC22y1IkkSE/X4PgiDo+xc2Ea0S9zjGa/Hb7Xbxifj9fj0K7yFSqVTwtlY6nYbpdKpPiSRYLBbQarX0PYymFhWhIlSEilCRW6GdyUqlkoVZr9dsKpXiOY6TtW+7BkNBz/7ebrcf9L+6Xq+XRYPMMyrTq5EIhUIvaAjTJb4BBNQ2yhnth0wAAAAASUVORK5CYII="
+                class="silex-element-content">
+        </div>
+
+        <a id="page-page-1" data-silex-type="page" class="page-element page-link-active">Page 1</a></div>
+
+
+
+
+
+
+
+
+
+    <div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366444112-1 section-element" data-silex-id="silex-id-1478366444112-1" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1478366444112-0 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1478366444112-0">
+            <div data-silex-type="html" class="editable-style silex-id-1509831230087-0 html-element" data-silex-id="silex-id-1509831230087-0" style="">
+                <div class="silex-element-content">
+                    <div class="homepage-hero-module">
+                        <div class="video-container">
+                            <div class="filter"></div>
+                            <video autoplay="" loop="" class="fillWidth">
+            <source src="/libs/templates/silex-blank-templates/responsive/PATH_TO_MP4" type="video/mp4">Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="/libs/templates/silex-blank-templates/responsive/PATH_TO_WEBM" type="video/webm">Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+                            <div class="poster hidden">
+                                <img src="/libs/templates/silex-blank-templates/responsive/PATH_TO_JPEG" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1474394621033-3 section-element" data-silex-id="silex-id-1474394621033-3" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1474394621032-2 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1474394621032-2"></div>
+    </div>
+    <div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366450713-3 section-element" data-silex-id="silex-id-1478366450713-3" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1478366450713-2 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1478366450713-2">
+
+            <div data-silex-id="silex-id-1442914737143-3" class="editable-style silex-id-1442914737143-3 text-element" data-silex-type="text" style="">
+                <div class="silex-element-content normal">
+                    <br>
+                    <div style="text-align: center;"><a href="//www.silex.me/">Powered by Silex</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
