@@ -57,9 +57,11 @@
         function scaleHero() {
             var height = $(window).height() + 5;
             var unitHeight = parseInt(height) + 'px';
-            var unitHeight_2 = parseInt(height/2) + 'px';
             $('.homepage-hero').css('height',unitHeight);
-            $('.middle-hero').css('top',unitHeight_2);
+            $('.middle-hero').forEach(function() {
+                var unitHeight_2 = parseInt(height/2 - $(this).height/2) + 'px';
+                $(this).css('top',unitHeight_2); 
+            });
         }
     </script>
     <style class="silex-inline-styles" type="text/css">
@@ -92,7 +94,7 @@
         
         .silex-id-1509831489516-1 {
             width: 650px;
-            min-height: 215px;
+            min-height: 132px;
             top: 173px;
             left: 297px;
             background-color: transparent;
@@ -176,6 +178,7 @@
             width: 1200px;
         }
     </style>
+
 
 
 
@@ -285,6 +288,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
