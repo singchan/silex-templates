@@ -26,11 +26,12 @@
 
 /* */
         
-        div.full-width {
+        div.video-container {
             width: 100%;
+            overflow: hidden;
         }
         
-        video {
+        .video-container video {
             -moz-transform: translateX(50%) translateY(50%);
             -webkit-transform: translateX(50%) translateY(50%);
             -ms-transform: translateX(50%) translateY(50%);
@@ -42,10 +43,6 @@
             height: auto;
             min-width: 100%;
             min-height: 100%;
-            overflow: hidden;
-        }
-        
-        .overflow {
             overflow: hidden;
         }
     </style>
@@ -190,6 +187,7 @@
 
 
 
+
     <!-- Silex HEAD tag do not remove -->
     <!-- End of Silex HEAD tag do not remove -->
 </head>
@@ -212,7 +210,7 @@
 
 
     <div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366444112-1 section-element homepage-hero" data-silex-id="silex-id-1478366444112-1" style="">
-        <div data-silex-type="html" class="editable-style silex-id-1509831230087-0 html-element full-width overflow" data-silex-id="silex-id-1509831230087-0" style="">
+        <div data-silex-type="html" class="editable-style silex-id-1509831230087-0 html-element video-container" data-silex-id="silex-id-1509831230087-0" style="">
             <div class="silex-element-content">
                 <div class="homepage-hero">
                     <video autoplay="" loop="" class="" poster="https://s3.amazonaws.com/coverr-public/poster/City-Nights.jpg" style="
@@ -236,8 +234,7 @@
                     </div>
                     <div style="text-align: center;">
                         <font face="times new roman, serif" style="" size="5"><span style="color: rgb(255, 255, 255);">design by </span><a href="https://templated.co/transitive" style=""><span style="color: rgb(255, 255, 255);">Templated</span></a><span style="color: rgb(255, 255, 255);"> and released under the </span>
-                            <a
-                                href="https://templated.co/license" style=""><span style="color: rgb(255, 255, 255);">Creative Commons</span></a><span style="color: rgb(255, 255, 255);">.</span></font>
+                            <a href="https://templated.co/license" style=""><span style="color: rgb(255, 255, 255);">Creative Commons</span></a><span style="color: rgb(255, 255, 255);">.</span></font>
                     </div>
                 </div>
             </div>
@@ -288,6 +285,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
