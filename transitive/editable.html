@@ -671,17 +671,18 @@
                     }
                     
                     label[for="nav-trigger"] {
-                        /* critical positioning styles */
-                        position: fixed;
+                        position: absolute;
                         left: 15px;
                         top: 15px;
                         z-index: 2;
-                        /* non-critical apperance styles */
                         height: 30px;
                         width: 30px;
                         cursor: pointer;
                         background-image: url('data:image/svg+xml;utf8,<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="4" fill="#fff" id="svg_1"/><rect y="24" width="30" height="4" fill="#fff" id="svg_2"/><rect y="12" width="30" height="4" fill="#fff" id="svg_3"/></svg>');
-                        background-size: contain;
+                    }
+                    
+                    .silex-runtime label[for="nav-trigger"] {
+                        position: fixed;
                     }
                     /* Make the Magic Happen */
                     
