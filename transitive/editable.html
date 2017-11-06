@@ -625,13 +625,11 @@
                     
                     .navigation {
                         /* critical sizing and position styles */
-                        width: 100%;
                         height: 100%;
                         position: fixed;
                         top: 0;
-                        right: 0;
                         bottom: 0;
-                        left: 0;
+                        left: -200px;
                         z-index: 0;
                         /* non-critical appearance styles */
                         list-style: none;
@@ -685,12 +683,16 @@
                     /* Make the Magic Happen */
                     
                     .nav-trigger+label,
-                    .site-wrap {
+                    .navigation {
                         transition: left 0.2s;
                     }
                     
                     .nav-trigger:checked+label {
                         left: 215px;
+                    }
+                    
+                    .nav-trigger:checked~.navigation {
+                        left: 0;
                     }
                     
                     .nav-trigger:checked~.site-wrap {
@@ -702,8 +704,42 @@
                         /* Without this, the body has excess horizontal scroll when the menu is open */
                         overflow-x: hidden;
                     }
+                    /* Additional non-critical styles */
+                    
+                    h1,
+                    h3,
+                    p {
+                        max-width: 600px;
+                        margin: 0 auto 1em;
+                    }
+                    
+                    code {
+                        padding: 2px;
+                        background: #ddd;
+                    }
+                    /* Micro reset */
+                    
+                    *,
+                    *:before,
+                    *:after {
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                    html,
+                    body {
+                        height: 100%;
+                        width: 100%;
+                        font-family: Helvetica, Arial, sans-serif;
+                    }
                 </style>
 
+
+                <input type="checkbox" id="nav-trigger" class="nav-trigger">
+                <label for="nav-trigger"></label>
                 <ul class="navigation">
                     <li class="nav-item"><a href="#">Home</a></li>
                     <li class="nav-item"><a href="#">Portfolio</a></li>
@@ -711,9 +747,7 @@
                     <li class="nav-item"><a href="#">Blog</a></li>
                     <li class="nav-item"><a href="#">Contact</a></li>
                 </ul>
-
-                <input type="checkbox" id="nav-trigger" class="nav-trigger">
-                <label for="nav-trigger"></label></div>
+            </div>
         </div>
     </div>
 
