@@ -842,6 +842,11 @@
                     }
                     /* Additional non-critical styles */
                 </style>
+                <script>
+                    $('body').on('pageChanged', function (event, pageName) {
+                        $('#nav-trigger').toggle();
+                    });
+                </script>
                 <input id="nav-trigger" class="nav-trigger" type="checkbox">
                 <label for="nav-trigger"></label>
                 <ul class="navigation">
