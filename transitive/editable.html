@@ -65,7 +65,13 @@
             background-color: black !important;
         }
         
-        .loader {
+        body.loaded {
+            transition: opacity .5s ease-in;
+            opacity: initial;
+            background-color: none;
+        }
+        
+        body:after {
             border: 16px solid #f3f3f3;
             /* Light grey */
             border-top: 16px solid #3498db;
@@ -76,8 +82,9 @@
             animation: spin 2s linear infinite;
         }
         
-        .loaded .loader {
-            display: none;
+        body.loaded:after {
+            content;
+            none
         }
         
         @keyframes spin {
@@ -88,12 +95,9 @@
                 transform: rotate(360deg);
             }
         }
-        
-        body.loaded {
-            transition: opacity .5s ease-in;
-            opacity: initial;
-            background-color: none;
-        }
+        /***********************\
+    /Loader widget
+\***********************/
     </style>
     <script type="text/javascript" class="silex-script">
         $(function() {
@@ -124,6 +128,9 @@
 $(function() {
     $(document.body).addClass('loaded');
 });
+/***********************\
+    /Loader widget
+\***********************/
     </script>
     <style class="silex-inline-styles" type="text/css">
         .body-initial {
