@@ -36,12 +36,13 @@
         }
         
         body {
-            transition: opacity linear 1s;
-        }
-        
-        body.loading {
             opacity: .1;
             background-color: black;
+        }
+        
+        body.loaded {
+            transition: opacity linear 1s;
+            opacity: initial;
         }
         
         .video-container video {
@@ -72,7 +73,7 @@
     </style>
     <script type="text/javascript" class="silex-script">
         window.onload = function() {
-            $(document.body).removeClass('loading');
+            $(document.body).addClass('loaded');
             var width = $(window).width();
             if(width > 480) {
                 scaleHero();
