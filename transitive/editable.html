@@ -1203,8 +1203,9 @@
                 }
             </style>
             <script>
+                var htmlBox = $('script').last().parent();
+                console.log('xxx', htmlBox);
                 $(function() {
-                    console.log('xxx', this);
                     $(document.body).addClass('loaded');
                 });
             </script>
