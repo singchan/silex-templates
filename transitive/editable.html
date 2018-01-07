@@ -58,7 +58,7 @@
         }
     </style>
     <script type="text/javascript" class="silex-script">
-        window.onload = function() {
+        $(function() {
             var width = $(window).width();
             if(width > 480) {
                 scaleHero();
@@ -78,7 +78,7 @@
                     }); 
                 });
             }
-        }
+        });
     </script>
     <style class="silex-inline-styles" type="text/css">
         .body-initial {
@@ -1204,7 +1204,6 @@
             </style>
             <script>
                 var htmlBox = $('script').last().parent();
-                console.log('xxx', htmlBox);
                 $(function() {
                     $(document.body).addClass('loaded');
                 });
