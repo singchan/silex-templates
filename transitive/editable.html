@@ -794,10 +794,18 @@
             </div>
 
             <div data-silex-type="html" class="editable-style silex-id-1509983672395-42 html-element hide-on-mobile" data-silex-id="silex-id-1509983672395-42" style="">
-                <div class="silex-element-content"><b id="message">
+                <div class="silex-element-content"><span id="message">
     This is the menu, it will be visible in the preview
-</b>
+</span>
+
                     <style>
+                        #message {
+                            color: white;
+                        }
+                        
+                        .silex-runtime #message {
+                            display: none;
+                        }
                         /* Navigation Menu - Background */
                         
                         .navigation {
