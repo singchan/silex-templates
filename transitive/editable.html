@@ -61,8 +61,11 @@
 \***********************/
         
         body.silex-runtime {
-            opacity: .1;
             background-color: black !important;
+        }
+        
+        body.silex-runtime>* {
+            opacity: .1;
         }
         
         body.loaded {
@@ -81,6 +84,10 @@
             width: 120px;
             height: 120px;
             animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50vw;
+            left: 50vw;
+            z-index: 100;
         }
         
         body.loaded:before {
