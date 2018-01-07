@@ -843,6 +843,7 @@
                     /* Additional non-critical styles */
                 </style>
                 <script>
+                    // when Silex says a page changed, close the menu
                     $('body').on('pageChanged', function (event, pageName) {
                         $('#nav-trigger').prop('checked', false);
                     });
