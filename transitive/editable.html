@@ -68,10 +68,13 @@
             opacity: .1;
         }
         
+        body.silex-runtime.loaded>* {
+            opacity: initial;
+        }
+        
         body.loaded {
             transition: opacity .5s ease-in;
-            opacity: initial;
-            background-color: none;
+            background-color: .silex-runtime;
         }
         
         body.silex-runtime:before {
