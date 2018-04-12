@@ -1,0 +1,234 @@
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <!-- generator meta tag -->
+    <!-- leave this for stats and Silex version check -->
+    <meta name="generator" content="Silex v2.2.7">
+    <!-- End of generator meta tag -->
+    <script type="text/javascript" src="https://silex-test-tmp.herokuapp.com/static/2.7/jquery.js" data-silex-static=""></script>
+    <script type="text/javascript" src="https://silex-test-tmp.herokuapp.com/static/2.7/jquery-ui.js" data-silex-static=""></script>
+    <script type="text/javascript" src="https://silex-test-tmp.herokuapp.com/static/2.7/pageable.js" data-silex-static=""></script>
+    <script type="text/javascript" src="https://silex-test-tmp.herokuapp.com/static/2.7/front-end.js" data-silex-static=""></script>
+    <link rel="stylesheet" href="https://silex-test-tmp.herokuapp.com/static/2.7/normalize.css" data-silex-static="">
+    <link rel="stylesheet" href="https://silex-test-tmp.herokuapp.com/static/2.7/front-end.css" data-silex-static="">
+
+    <style type="text/css" class="silex-style">@import url(https://fonts.googleapis.com/css?family=Montserrat);@import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700);h1,
+h2,
+h3,
+h4 {font-family: 'Playfair Display', serif; letter-spacing: .5px; color: #333;}.gallery {background-color: rgba(0, 255, 0, .5) !important; overflow: auto;}.silex-runtime .gallery {background-color: transparent !important;}.gallery,
+.gallery a:link {color: black;}.gallery ul li {list-style: none; margin-bottom: 10px; cursor: pointer;}.gallery ul li img {width: 100%;}.gallery ul {margin: 10px; -webkit-column-count: 3; -moz-column-count: 3; -o-column-count: 3; -ms-column-count: 3; column-count: 3;}.slideshow ul {list-style: none;}.slideshow ul li {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center;}.nav li a {font-family: 'Montserrat', sans-serif; letter-spacing: .5px; color: #666666; text-transform: uppercase; text-decoration: none;}div.nav {list-style: none; margin: 0; padding: 0; text-align: right;}div.nav li {display: inline-block; font-size: 16px; line-height: 1em; padding: 10px 20px; text-align: center; text-decoration: none;}div.nav li:hover:after {width: 100%; background: #333;}div.nav li a:hover,
+div.nav li a.page-link-active,
+a.nav-active {color: #000;}div.grow {transition: all .2s ease-in-out; outline: 1px solid transparent;}div.grow:hover {transform: scale(1.1);}</style>
+    <script type="text/javascript" class="silex-script">// Flickr widget
+function flickIt(jQuerySelector, displayType, photosetId, opt_cbk){
+    jQuerySelector.html('loading...');
+    jQuerySelector.flickr({
+        api_key: "7b5f9448ae4547ff02d6ce3db22e482d",
+        type: 'photoset',
+        photoset_id: photosetId,
+        size: 'o',
+        thumb_size: 'n',
+        displayType: displayType,
+        callback: function(){
+            // lightbox
+            if (displayType === 'fancybox'){
+              $('a').fancybox();
+            }
+            // callback
+            if (opt_cbk){
+                opt_cbk(jQuerySelector);
+            }
+        },
+        error: function(e){
+            jQuerySelector.html('Error loading flickr gallery. ' + e);
+        }
+    });
+}
+
+function slideIt(jQuerySelector){
+    $(jQuerySelector).find('ul > li:gt(0)').css('opacity', '0');
+    setInterval(function() {
+      $(jQuerySelector).find('ul > li:first')
+        .fadeOut(1000)
+        .next()
+        .css('opacity', '1')
+        .fadeIn(1000)
+        .end()
+        .appendTo($(jQuerySelector).find('ul'));
+    },  10000);
+}
+function getPhotosetId(pageName){
+    return pageName;
+    //return albums[pageName] || albums['default'];
+}
+function onPageChange(newUrl){
+    var currentPage = newUrl.substr(newUrl.indexOf('#!page-') + 7);
+    window.jQuerySelector = $(".gallery");
+    flickIt(jQuerySelector, 'fancybox', getPhotosetId(currentPage));
+}
+$(function(){
+    window.jQuerySelector = $(".slideshow .silex-element-content");
+    //flickIt(jQuerySelector, 'slideshow', albums.home, slideIt);
+    var currentPage = $('body').pageable().data()['silexlabs-pageable'].options.currentPage;
+    currentPage = currentPage.substr(currentPage.indexOf('page-') + 5);
+    flickIt(jQuerySelector, 'slideshow', currentPage, slideIt);
+    onPageChange(window.location.href);
+})
+$(window).bind( 'hashchange', function (e){
+    onPageChange(window.location.href);
+});
+// end of flickr widget
+        /*
+         * active menu widget for Silex
+         * create an element which links to an anchor, e.g. an element with a link to #anchor1
+         * add the css class "anchor-link" to this element
+         * create an element which is the anchor, e.g. an element with the css class "anchor1"
+         * when the user clicks on the link, the scroll slides until the element is visible
+         * when the user slides and the element is visible, the link gets a css class "active-menu"
+         */
+        $(function() {
+            // Cache selectors
+            var lastId,
+            // All list items
+            menuItems = $(".anchor-link a");
+            $(menuItems[0]).addClass("active-menu");
+            // Anchors corresponding to menu items
+            // find the name of the elements which are anchors
+            var scrollItems = menuItems.map(function(){
+                // the names are in the href attribute of the anchor links
+                var attr = $(this).attr("data-silex-href") || $(this).attr("href");
+                // case of a link in text field or an external link after publish
+                $(this).find("[href]").each(function() {
+                    attr = $(this).attr("href");
+                });
+                // case of an "external link" before publish
+                $(this).find("[data-silex-href]").each(function() {
+                    attr = $(this).attr("href");
+                });
+                // the links to anchors are expected to start with #
+                if(attr && attr.indexOf("#") === 0) {
+                    var name = attr.substring(1);
+                    var item = $("." + name);
+                    // check if there is a hash in the URL to scroll to the anchor at start
+                    if(window.location.hash.indexOf(name) === 1) {
+                        var offsetTop = item.offset().top;
+                        $('html, body').stop().animate({
+                            scrollTop: offsetTop - 85
+                        }, 300);
+                    }
+                    // now find the element itself, which has the name as a css class
+                    if (item.length) { return {
+                            "link": this,
+                            "item": item.get(0)
+                        };
+                    }
+                }
+            });
+            // Bind click handler to menu items
+            // so we can get a fancy scroll animation
+            scrollItems.each(function() {
+                var link = this.link;
+                var item = this.item;
+                var offsetTop = $(item).offset().top;
+                $(link).click(function(e){
+                  $('html, body').stop().animate({
+                      scrollTop: offsetTop - 85
+                  }, 300);
+                  e.preventDefault();
+                });
+            })
+        
+            // Bind to scroll
+            $(window).scroll(function(){
+               // Get container scroll position
+               var fromTop = $(this).scrollTop();
+               // Get id of current scroll item
+               var cur = scrollItems.map(function(){
+                 if ($(this.item).offset().top  - 85 <= fromTop)
+                   return this;
+               });
+               // add the css class on the current menu item
+               $(".active-menu").removeClass("active-menu");
+               if(cur.length > 0) {
+                   cur = cur[cur.length-1];
+                   $(cur.link).addClass("active-menu");
+               }
+            });
+        });
+    </script>
+    <style class="silex-inline-styles" type="text/css">.body-initial {background-color: rgba(255,255,255,1);}.silex-id-1478366444112-1 {top: 100px; left: NaNpx; background-color: rgba(250,219,207,1);}.silex-id-1478366444112-0 {min-height: 53px; background-color: transparent; width: 1200px;}.silex-id-1523373215011-0 {width: 1200px; background-color: transparent; min-height: 68px; top: -7px; left: 0px;}.silex-id-1474394621033-3 {top: 140px; left: 5px; min-width: 1200px; background-image: url('../../../../../dropbox/get/SILEX/template-wedding/data/assets/couple.jpg'); background-repeat: no-repeat; background-size: cover;}@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {.silex-id-1474394621033-3 {background-position: top center;}}.silex-id-1474394621032-2 {min-height: 688px; background-color: transparent; width: 1200px; top: 15px; left: 100px;}.silex-id-1523447803764-0 {width: 338px; background-color: rgba(250,219,207,1); min-height: 338px; top: 358px; left: 414px; border-radius: 500px 500px 500px 500px;}.silex-id-1523448020596-1 {width: 316px; min-height: 191px; top: 76px; left: 4px;}.silex-id-1523448580285-3 {border-width: 4px 0 4px 0; border-style: solid; border-color: rgba(250,219,207,1);}.silex-id-1523448580285-2 {min-height: 176px;}.silex-id-1523449027871-4 {width: 1199px; min-height: 90px; top: 10px; left: 0px;}.silex-id-1523449380767-6 {width: 176px; top: 57px; left: 933px; cursor: pointer; min-height: 53px; background-color: rgba(180,180,180,1); border-radius: 25px 25px 25px 25px; border-width: 10px 10px 10px 10px; border-style: solid; border-color: rgba(255,255,255,1);}.silex-id-1523449704840-8 {top: 1006px; left: 5px; background-color: rgba(250,219,207,1);}.silex-id-1523449704840-7 {min-height: 434px;}.silex-id-1523449727281-9 {width: 473px; min-height: 387px; top: 18px; left: 93px;}.silex-id-1523450001471-11 {width: 577px; background-color: rgb(255, 255, 255); min-height: 430px; top: 0px; left: 621px; background-image: url('../../../../../dropbox/get/SILEX/template-wedding/data/assets/ceremony.jpg'); background-repeat: no-repeat; background-size: cover;}.silex-id-1523450891425-13 {top: 1505px; left: 5px;}.silex-id-1523450891425-12 {min-height: 1400px;}.silex-id-1523453327973-16 {width: 278px; min-height: 43px; top: 22px; left: 487px; background-color: rgba(250,219,207,1);}.silex-id-1523452808997-15 {width: 1200px; background-color: rgb(255, 255, 255); min-height: 1289px; top: 84px; left: 0px;}.silex-id-1523457808302-1 {background-color: rgba(250,219,207,1); border-width: 4px 0 0 0; border-style: solid; border-color: rgba(250,219,207,1);}.silex-id-1523457808302-0 {min-height: 453px;}.silex-id-1523458124037-3 {width: 278px; min-height: 43px; top: 31px; left: 465px; background-color: rgba(250,219,207,1);}.silex-id-1523457816644-2 {width: 1920px; background-color: rgb(255, 255, 255); min-height: 350px; top: 100px; left: -350px;}.silex-id-1523458276126-4 {width: 288px; min-height: 161px; top: 285px; left: 35px; background-color: rgba(255,255,255,1); border-width: 7px 7px 0 7px; border-style: solid; border-color: rgba(255,255,255,1); border-radius: 10px 10px 0 0;}.silex-id-1478366450713-3 {top: 2846px; left: 5px; background-color: rgba(107,107,107,1); border-width: 4px 0 0 0; border-style: solid; border-color: rgba(250,219,207,1);}.silex-id-1478366450713-2 {min-height: 185px; background-color: transparent; width: 1200px;}.silex-id-1523456593843-24 {width: 204px; min-height: 74px; top: 52px; left: 85px;}.silex-id-1523453740397-19 {width: 453px; min-height: 100px; top: 33px; left: 327px;}</style>
+    <title></title>
+    <script type="text/json" class="silex-json-styles">[{"desktop":{"body-initial":{"background-color":"rgba(255,255,255,1)"},"silex-id-1474394621033-3":{"top":"140px","left":"5px","min-width":"1200px","background-image":"url('/dropbox/get/SILEX/template-wedding/data/assets/couple.jpg')","background-repeat":"no-repeat","background-size":"cover"},"silex-id-1474394621032-2":{"min-height":"688px","background-color":"transparent","width":"1200px","top":"15px","left":"100px"},"silex-id-1474394605264-1":{"min-height":"100px","width":"100px","top":"100px","left":"100px"},"silex-id-1474394605263-0":{"min-height":"100px","background-color":"transparent"},"silex-id-1478366444112-0":{"min-height":"53px","background-color":"transparent","width":"1200px"},"silex-id-1478366444112-1":{"top":"100px","left":"NaNpx","background-color":"rgba(250,219,207,1)"},"silex-id-1478366450713-2":{"min-height":"185px","background-color":"transparent","width":"1200px"},"silex-id-1478366450713-3":{"top":"2846px","left":"5px","background-color":"rgba(107,107,107,1)","border-width":"4px 0 0 0 ","border-style":"solid","border-color":"rgba(250,219,207,1)"},"silex-id-1523373215011-0":{"width":"1200px","background-color":"transparent","min-height":"68px","top":"-7px","left":"0px"},"silex-id-1523447803764-0":{"width":"338px","background-color":"rgba(250,219,207,1)","min-height":"338px","top":"358px","left":"414px","border-radius":"500px 500px 500px 500px ","border-style":"","border-width":""},"silex-id-1523448020596-1":{"width":"316px","min-height":"191px","top":"76px","left":"4px"},"silex-id-1523448580285-2":{"width":"","background-color":"","min-height":"176px"},"silex-id-1523448580285-3":{"border-width":"4px 0 4px 0 ","border-style":"solid","border-color":"rgba(250,219,207,1)"},"silex-id-1523449027871-4":{"width":"1199px","min-height":"90px","top":"10px","left":"0px"},"silex-id-1523449380767-6":{"width":"176px","top":"57px","left":"933px","cursor":"pointer","min-height":"53px","background-color":"rgba(180,180,180,1)","border-radius":"25px 25px 25px 25px","border-width":"10px 10px 10px 10px ","border-style":"solid","border-color":"rgba(255,255,255,1)"},"silex-id-1523449704840-7":{"width":"","background-color":"","min-height":"434px"},"silex-id-1523449704840-8":{"top":"1006px","left":"5px","background-color":"rgba(250,219,207,1)"},"silex-id-1523449727281-9":{"width":"473px","min-height":"387px","top":"18px","left":"93px"},"silex-id-1523450001471-11":{"width":"577px","background-color":"rgb(255, 255, 255)","min-height":"430px","top":"0px","left":"621px","background-image":"url('/dropbox/get/SILEX/template-wedding/data/assets/ceremony.jpg')","background-repeat":"no-repeat","background-size":"cover"},"silex-id-1523450891425-12":{"width":"","background-color":"","min-height":"1400px"},"silex-id-1523450891425-13":{"top":"1505px","left":"5px"},"silex-id-1523452808997-15":{"width":"1200px","background-color":"rgb(255, 255, 255)","min-height":"1289px","top":"84px","left":"0px"},"silex-id-1523453327973-16":{"width":"278px","min-height":"43px","top":"22px","left":"487px","background-color":"rgba(250,219,207,1)"},"silex-id-1523453740397-19":{"width":"453px","min-height":"100px","top":"33px","left":"327px"},"silex-id-1523456593843-24":{"width":"204px","min-height":"74px","top":"52px","left":"85px"},"silex-id-1523457808302-0":{"width":"","background-color":"","min-height":"453px","border-width":"","border-style":""},"silex-id-1523457808302-1":{"background-color":"rgba(250,219,207,1)","border-width":"4px 0 0 0 ","border-style":"solid","border-color":"rgba(250,219,207,1)"},"silex-id-1523457816644-2":{"width":"1920px","background-color":"rgb(255, 255, 255)","min-height":"350px","top":"100px","left":"-350px"},"silex-id-1523458124037-3":{"width":"278px","min-height":"43px","top":"31px","left":"465px","background-color":"rgba(250,219,207,1)"},"silex-id-1523458276126-4":{"width":"288px","min-height":"161px","top":"285px","left":"35px","background-color":"rgba(255,255,255,1)","border-width":"7px 7px 0 7px ","border-style":"solid","border-color":"rgba(255,255,255,1)","border-radius":"10px 10px 0 0 "}},"mobile":{"silex-id-1474394621033-3":{"background-position":"top center"}},"prodotypeData":{"component":{},"style":{"bubble":{"className":"bubble","templateName":"text","displayName":"Bubble","desktop-mobile":{"normal":{"className":"bubble","pseudoClass":"normal","Title1":{"font-family":"","text-align":"center","color":"#6b6b6b","font-style":"","font-weight":"normal"},"Paragraph":{"text-align":"center","color":"#6b6b6b","font-size":"large","word-spacing":"","letter-spacing":"-1px","line-height":"0"},"Title2":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"1","font-weight":"bold"},"Title3":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"0","font-weight":"normal","font-style":"italic"}}}},"title-header":{"className":"title-header","templateName":"text","displayName":"title-header","desktop-mobile":{"normal":{"className":"title-header","templateName":"text","displayName":"Bubble","desktop-mobile":{"normal":{"className":"bubble","pseudoClass":"normal","Title1":{"font-family":"","text-align":"center","color":"#6b6b6b","font-style":"","font-weight":"normal"},"Paragraph":{"text-align":"center","color":"#6b6b6b","font-size":"large","word-spacing":"","letter-spacing":"-1px","line-height":"0"},"Title2":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"1","font-weight":"bold"},"Title3":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"0","font-weight":"normal","font-style":"italic"}}},"pseudoClass":"normal","Title1":{"line-height":"","font-weight":"normal","font-size":"xx-large","numerical-size":"46px"},"Title2":{"line-height":"0","font-weight":"normal","font-size":"large","direction":"","text-indent":""},"Paragraph":{"line-height":""}}},"mobile":{"normal":{"templateName":"text","className":"title-header","pseudoClass":"normal","Title1":{"font-size":"x-large","numerical-size":"33px"}}}},"planning":{"className":"planning","templateName":"text","displayName":"planning","desktop-mobile":{"normal":{"className":"planning","templateName":"text","displayName":"title-header","desktop-mobile":{"normal":{"className":"title-header","templateName":"text","displayName":"Bubble","desktop-mobile":{"normal":{"className":"bubble","pseudoClass":"normal","Title1":{"font-family":"","text-align":"center","color":"#6b6b6b","font-style":"","font-weight":"normal"},"Paragraph":{"text-align":"center","color":"#6b6b6b","font-size":"large","word-spacing":"","letter-spacing":"-1px","line-height":"0"},"Title2":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"1","font-weight":"bold"},"Title3":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"0","font-weight":"normal","font-style":"italic"}}},"pseudoClass":"normal","Title1":{"line-height":"0.6","font-weight":"normal","font-size":"xx-large","numerical-size":"46px"},"Title2":{"line-height":"0","font-weight":"normal","font-size":"large"}}},"pseudoClass":"normal","Title1":{"font-weight":"bold","font-size":"xx-large","color":"#6b6b6b"},"Title2":{"font-size":"x-large"}}}},"titles":{"className":"titles","templateName":"text","displayName":"Titles","desktop-mobile":{"normal":{"className":"titles","templateName":"text","displayName":"planning","desktop-mobile":{"normal":{"className":"planning","templateName":"text","displayName":"title-header","desktop-mobile":{"normal":{"className":"title-header","templateName":"text","displayName":"Bubble","desktop-mobile":{"normal":{"className":"bubble","pseudoClass":"normal","Title1":{"font-family":"","text-align":"center","color":"#6b6b6b","font-style":"","font-weight":"normal"},"Paragraph":{"text-align":"center","color":"#6b6b6b","font-size":"large","word-spacing":"","letter-spacing":"-1px","line-height":"0"},"Title2":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"1","font-weight":"bold"},"Title3":{"text-align":"center","color":"#6b6b6b","font-size":"xx-large","line-height":"0","font-weight":"normal","font-style":"italic"}}},"pseudoClass":"normal","Title1":{"line-height":"0.6","font-weight":"normal","font-size":"xx-large","numerical-size":"46px"},"Title2":{"line-height":"0","font-weight":"normal","font-size":"large"}}},"pseudoClass":"normal","Title1":{"font-weight":"bold","font-size":"xx-large","color":"#6b6b6b"},"Title2":{"font-size":"x-large"}}},"pseudoClass":"normal","Title1":{"color":"#6b6b6b","text-transform":"uppercase","text-align":"center","line-height":"0"}}}},"footer":{"className":"footer","templateName":"text","displayName":"footer","desktop-mobile":{"normal":{"className":"footer","pseudoClass":"normal","Paragraph":{"line-height":"0.5"},"Link":{"background-color":"#fadbcf"}}}},"map":{"className":"map","templateName":"text","displayName":"map","":{"normal":{"className":"map","pseudoClass":"normal"}},"desktop-mobile":{"normal":{"templateName":"text","className":"map","pseudoClass":"normal","Title1":{"line-height":"1","text-indent":"4px"}}}}}}}]</script>
+
+
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2.2" data-silex-viewport="">
+
+
+    <meta name="website-width" content="1200">
+    <style type="text/css" class="silex-style-settings">.website-width {width: 1200px;}</style>
+
+
+
+
+
+    
+    
+<style class="silex-prodotype-style" type="text/css" data-style-id="bubble">.bubble h1 {font-weight: normal; color: #6b6b6b; text-align: center;}.bubble h2 {font-weight: bold; font-size: xx-large; color: #6b6b6b; text-align: center; line-height: 1;}.bubble h3 {font-style: italic; font-weight: normal; font-size: xx-large; color: #6b6b6b; text-align: center; line-height: 0;}.bubble p {font-size: large; color: #6b6b6b; text-align: center; line-height: 0; letter-spacing: -1px;}</style><style class="silex-prodotype-style" type="text/css" data-style-id="title-header">.title-header h1 {font-weight: normal; font-size: 46px;}.title-header h2 {font-weight: normal; font-size: large; line-height: 0;}@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {.title-header h1 {font-size: 33px;}}</style><style class="silex-prodotype-style" type="text/css" data-style-id="planning">.planning h1 {font-weight: bold; font-size: xx-large; color: #6b6b6b;}.planning h2 {font-size: x-large;}</style><style class="silex-prodotype-style" type="text/css" data-style-id="titles">.titles h1 {color: #6b6b6b; text-align: center; text-transform: uppercase; line-height: 0;}</style><style class="silex-prodotype-style" type="text/css" data-style-id="footer">.footer p {line-height: 0.5;}.footer a {background-color: #fadbcf;}</style><style class="silex-prodotype-style" type="text/css" data-style-id="map">.map h1 {line-height: 1; text-indent: 4px;}</style><!-- Silex HEAD tag do not remove --><script type="text/javascript" src="../../../../../dropbox/get/SILEX/template-wedding/js/silex.jquery.flickr.js"></script>
+<script type="text/javascript" src="../../../../../dropbox/get/SILEX/template-wedding/js/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="../../../../../dropbox/get/SILEX/template-wedding/css/jquery.fancybox.css"><!-- End of Silex HEAD tag do not remove --></head>
+
+<body data-silex-id="body-initial" class="body-initial enable-mobile silex-runtime" data-silex-type="container"><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366444112-1 section-element" data-silex-id="silex-id-1478366444112-1" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1478366444112-0 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1478366444112-0"><div data-silex-type="html" class="editable-style silex-id-1523373215011-0 html-element nav anchor-link" data-silex-id="silex-id-1523373215011-0" style=""><div class="silex-element-content"><ul>
+    <li><a href="#anchor0">Home</a></li>
+    <li><a href="#anchor1">The ceremony</a></li>
+    <li><a href="#anchor2">Our gallery</a></li>
+    <li><a href="#anchor3">Our location</a></li>
+</ul></div></div></div>
+    </div><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1474394621033-3 section-element" data-silex-id="silex-id-1474394621033-3" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1474394621032-2 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1474394621032-2"><div data-silex-type="container" class="editable-style silex-id-1523447803764-0 container-element" data-silex-id="silex-id-1523447803764-0" style=""><div data-silex-type="text" class="editable-style silex-id-1523448020596-1 text-element bubble" data-silex-id="silex-id-1523448020596-1" style=""><div class="silex-element-content normal"><h1 class="heading1">Romeo &amp; Juliette</h1><p class="normal">---------</p><h2 class="heading2">14 Juillet</h2><h3 class="heading3">Save the date !</h3></div></div></div></div>
+    </div>
+    <div class="silex-pages">
+        <div data-silex-type="image" class="editable-style silex-id-hamburger-menu image-element menu-button prevent-draggable prevent-resizable" data-silex-id="silex-id-hamburger-menu">
+            <img alt="open mobile menu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAYAAAC8cqlMAAAB5UlEQVR42u2ZPWvCUBSGM+UfFO3e3dLu/QN+oKj4EUXRQREEJYgoiCAu6qCogyDo7iJ21UUaKqEgCC4iiEMGB3UVgsnpTWj/wfVK2nvhGbKEPJyT996TMMzPGg6H5mKx+GgkyuWyeTQasb8OTDwef4tEIp8+n+/LYIjJZJJHQiwzm81M6OLDarWqNpsNjEYgEJCy2ewT0+/3TagighElNFAnQT6ft1ARKkJFqMgfFvF4PFpuEwFtdrcRqVarIIoirFYrIiyXSxiPx+B2u/GJBINBuF6vQHopigK1Wg2fCMdxcLlciIuoqgqNRgOfiN1uB3Qwg91uB8fjkQiHwwEmkwne1qLxS0VuKKJle71eh06nQ4Rmswk8z+MVcTqdsNlsQJZlotF7Pp8hk8ngE4lGo/qN7xG/vV4Pb0Xm8zlxkdPpBGgMx/+yJxIJKBQKRMjlcuBwOGhq/Q+RcDgMsViMCFrAuFwu/CKDwQC22y1IkkSE/X4PgiDo+xc2Ea0S9zjGa/Hb7Xbxifj9fj0K7yFSqVTwtlY6nYbpdKpPiSRYLBbQarX0PYymFhWhIlSEilCRW6GdyUqlkoVZr9dsKpXiOY6TtW+7BkNBz/7ebrcf9L+6Xq+XRYPMMyrTq5EIhUIvaAjTJb4BBNQ2yhnth0wAAAAASUVORK5CYII=" class="silex-element-content">
+        </div>
+
+        <a id="page-72157667685748888" data-silex-type="page" class="page-element">72157667685748888</a></div>
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1523448580285-3 section-element" data-silex-id="silex-id-1523448580285-3"><div data-silex-type="container" class="editable-style silex-id-1523448580285-2 container-element silex-element-content silex-container-content website-width prevent-draggable" data-silex-id="silex-id-1523448580285-2"><div data-silex-type="text" class="editable-style text-element bubble silex-id-1523449027871-4 title-header" data-silex-id="silex-id-1523449027871-4" style=""><div class="silex-element-content normal"><h1 class="heading1">They are getting married!</h1><h2 class="heading2">And they request the honour of your presence</h2></div></div><div data-silex-type="text" class="editable-style silex-id-1523449380767-6 text-element button grow" data-silex-id="silex-id-1523449380767-6" style=""><div class="silex-element-content normal"><p style="text-align: center;"><font size="4"><span style="color: rgb(255, 255, 255);">I’ll be there</span></font></p></div></div></div></div><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1523449704840-8 section-element" data-silex-id="silex-id-1523449704840-8"><div data-silex-type="container" class="editable-style silex-id-1523449704840-7 container-element silex-element-content silex-container-content website-width prevent-draggable anchor1" data-silex-id="silex-id-1523449704840-7"><div data-silex-type="text" class="editable-style text-element bubble silex-id-1523449727281-9 planning" data-silex-id="silex-id-1523449727281-9" style=""><div class="silex-element-content normal"><h1 class="heading1" style="text-align: right;">WEDDING CEREMONY</h1><p class="normal" style="text-align: right;">---------</p><h2 class="heading2" style="text-align: right;">09.00<span style="font-weight: normal;"> : Lorem convallis&nbsp;</span></h2><h2 class="heading2" style="text-align: right;">10.00<span style="font-weight: normal;"> : Ipsum dolor</span></h2><h2 class="heading2" style="text-align: right;">11.00<span style="font-weight: normal;"> : Mauris consequat&nbsp;</span></h2><h2 class="heading2" style="text-align: right;">12.30<span style="font-weight: normal;"> : Quisque euismod</span></h2><h2 class="heading2" style="text-align: right;">15.00<span style="font-weight: normal;"> : Etiam at rhoncus&nbsp;</span></h2><h2 class="heading2" style="text-align: right;">18.00<span style="font-weight: normal;"> : Suspendisse party</span></h2><div style="text-align: right;"><br></div></div></div><div data-silex-type="container" class="editable-style silex-id-1523450001471-11 container-element" data-silex-id="silex-id-1523450001471-11" style=""></div></div></div><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1523450891425-13 section-element anchor2" data-silex-id="silex-id-1523450891425-13"><div data-silex-type="container" class="editable-style silex-id-1523450891425-12 container-element silex-element-content silex-container-content website-width prevent-draggable" data-silex-id="silex-id-1523450891425-12"><div data-silex-type="text" class="editable-style silex-id-1523453327973-16 text-element titles" data-silex-id="silex-id-1523453327973-16" style=""><div class="silex-element-content normal"><h1 class="heading1">Our Gallery</h1></div></div><div data-silex-type="html" class="editable-style silex-id-1523452808997-15 html-element gallery" data-silex-id="silex-id-1523452808997-15" style=""><div class="silex-element-content"></div></div></div></div><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1523457808302-1 section-element anchor3" data-silex-id="silex-id-1523457808302-1"><div data-silex-type="container" class="editable-style silex-id-1523457808302-0 container-element silex-element-content silex-container-content website-width prevent-draggable" data-silex-id="silex-id-1523457808302-0"><div data-silex-type="text" class="editable-style text-element titles silex-id-1523458124037-3" data-silex-id="silex-id-1523458124037-3" style=""><div class="silex-element-content normal"><h1 class="heading1">Our Location</h1></div></div><div data-silex-type="html" class="editable-style silex-id-1523457816644-2 html-element" data-silex-id="silex-id-1523457816644-2" style=""><div class="silex-element-content"><iframe scrolling="no" width="100%" height="350" frameborder="0" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.3393583297729497%2C48.88526299769019%2C2.346439361572266%2C48.88841646113477&amp;layer=mapnik&amp;marker=48.88683975427058%2C2.3428988456726074" style="border: 0px solid black"></iframe></div></div><div data-silex-type="text" class="editable-style silex-id-1523458276126-4 text-element map" data-silex-id="silex-id-1523458276126-4" style=""><div class="silex-element-content normal"><h1 class="heading1">Cupidatat brisket</h1><p class="normal"><b>Pastrami non duis</b>, <br>38 ham hock flank <br>75018 laboris</p></div></div></div></div><div data-silex-type="container" class="prevent-draggable container-element editable-style silex-id-1478366450713-3 section-element" data-silex-id="silex-id-1478366450713-3" style="">
+        <div data-silex-type="container" class="editable-style silex-element-content silex-id-1478366450713-2 silex-container-content container-element prevent-draggable website-width" data-silex-id="silex-id-1478366450713-2">
+
+            
+        <div data-silex-type="image" class="editable-style silex-id-1523456593843-24 image-element" data-silex-id="silex-id-1523456593843-24" style=""><img src="../../../../../dropbox/get/SILEX/template-wedding/data/assets/silex-logo-2018-white@0.5x.png" class="silex-element-content"></div><div data-silex-type="text" class="editable-style silex-id-1523453740397-19 text-element footer" data-silex-id="silex-id-1523453740397-19" style=""><div class="silex-element-content normal"><p><span style="color: rgb(255, 255, 255); font-family: Calibri, sans-serif; font-size: 14.6667px;">Template by&nbsp;&nbsp;</span><a href="https://www.whynotprod.com/" style="font-family: Calibri, sans-serif; font-size: 14.6667px;">whynotPROD</a></p><p><span style="font-family: Calibri, sans-serif; font-size: 11pt; color: rgb(255, 255, 255); text-align: right;">Photos by&nbsp;&nbsp;</span><a href="https://www.pexels.com/" style="font-family: Calibri, sans-serif; font-size: 11pt; text-align: right;">PEXELS</a></p><p><span style="color: rgb(255, 255, 255); font-family: Calibri, sans-serif; font-size: 14.6667px;">This website is powered by&nbsp;&nbsp;</span><a href="https://www.silex.me/" style="font-family: Calibri, sans-serif; font-size: 14.6667px;">Silex v.2</a><span style="color: rgb(255, 255, 255); font-family: Calibri, sans-serif; font-size: 14.6667px;">&nbsp; free website builder for designers</span></p><p></p><p></p></div></div></div>
+    </div></body></html>
